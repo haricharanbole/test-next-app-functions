@@ -63,4 +63,10 @@ jobs:
           app-name: 'test-next-app-functions'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BDCB270485FE447AB7E70BED008D0A90 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BDCB270485FE447AB7E70BED008D0A90 }}\
+          node-version: ${{ env.NODE_VERSION }}
+          shell: bash
+          run: |
+           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+           npm install -g pnpm
+           pnpm run start:function

@@ -74,4 +74,5 @@ jobs:
         shell: bash
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          npm install -g pnpm
           pnpm start:function

@@ -63,10 +63,15 @@ jobs:
           app-name: 'test-next-app-functions'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BDCB270485FE447AB7E70BED008D0A90 }}\
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BDCB270485FE447AB7E70BED008D0A90 }}
+      
+      - name: Setup Node ${{ env.NODE_VERSION }} Environment
+        uses: actions/setup-node@v3
+        with:
           node-version: ${{ env.NODE_VERSION }}
-          shell: bash
-          run: |
-           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-           npm install -g pnpm
-           pnpm run start:function
+
+      - name: 'Run Next App'
+        shell: bash
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          pnpm start:function

@@ -30,8 +30,8 @@ jobs:
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           npm install -g pnpm
-          pnpm install
-          pnpm run build --if-present
+          pnpm install --frozen-lockfile
+          pnpm run build
           popd
 
       - name: Zip artifact for deployment

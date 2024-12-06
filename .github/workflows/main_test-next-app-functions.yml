@@ -75,4 +75,5 @@ jobs:
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           npm install -g pnpm
+          pnpm install --frozen-lockfile
           pnpm start:function

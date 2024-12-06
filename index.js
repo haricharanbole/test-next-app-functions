@@ -8,6 +8,7 @@ const port = 3000;
 const nextJsApp = next({
   dir: '.',
   dev: process.env.NODE_ENV === 'development',
+  // @ts-ignore
   xPoweredBy: false,
 });
 
@@ -33,14 +34,14 @@ const BINARY_MIME_TYPES = ['*/*'];
 if (inFunction) {
   const cachedServerlessExpress = serverlessExpress({ app: expressApp })
 
-  module.exports = async function (context, req) {
+  module.exports = async function (/** @type {any} */ context, /** @type {any} */ req) {
     return cachedServerlessExpress(context, req)
   }
 
 } else {
   nextJsApp.prepare().then(
     () => {
-      expressApp.listen(port, (err) => {
+      expressApp.listen(port, (/** @type {any} */ err) => {
         if (err) {
           throw err;
         }

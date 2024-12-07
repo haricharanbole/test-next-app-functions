@@ -42,4 +42,6 @@ function exitProcessOnError(handler) {
   };
 }
 
-exports.handler = exitProcessOnError(lambdaHandler);
+export default function () {
+  return exitProcessOnError(lambdaHandler);
+}

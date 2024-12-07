@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable */
 import serverlessExpress from '@codegenie/serverless-express';
 import next from 'next';
@@ -40,8 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 
   const cachedServerlessExpress = serverlessExpress({ app: expressApp })
 
-  function finalExpress(/** @type {any} */ context, /** @type {any} */ req) {
+  module.exports = async function (context, req) {
     return cachedServerlessExpress(context, req)
   }
-  finalExpress()
 }

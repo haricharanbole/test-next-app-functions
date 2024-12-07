@@ -20,27 +20,29 @@ expressApp.disable('x-powered-by');
 console.log(process.env.NODE_ENV)
 
 
-if (process.env.NODE_ENV === 'development') {
-  nextJsApp.prepare().then(
-    () => {
-      expressApp.listen(port, (/** @type {any} */ err) => {
-        if (err) {
-          throw err;
-        }
+// if (process.env.NODE_ENV === 'development') {
+//   nextJsApp.prepare().then(
+//     () => {
+//       expressApp.listen(port, (/** @type {any} */ err) => {
+//         if (err) {
+//           throw err;
+//         }
 
-        console.log(`> Ready on port ${port}`);
-      });
-    },
-    (error) => {
-      console.error('An error occurred, unable to start the server');
-      console.error(error);
-    },
-  );
-} else {
+//         console.log(`> Ready on port ${port}`);
+//       });
+//     },
+//     (error) => {
+//       console.error('An error occurred, unable to start the server');
+//       console.error(error);
+//     },
+//   );
+// } else {
 
-  const cachedServerlessExpress = serverlessExpress({ app: expressApp })
+//   const cachedServerlessExpress = serverlessExpress({ app: expressApp })
 
-  module.exports = async function (context, req) {
-    return cachedServerlessExpress(context, req)
-  }
+ 
+// }
+
+export default async function (context, req) {
+  return cachedServerlessExpress(context, req)
 }

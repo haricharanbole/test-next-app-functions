@@ -2,7 +2,7 @@
 /* eslint-disable */
 const next = require('next');
 const serverlessExpress = require('@codegenie/serverless-express');
-const createExpressApp = require('./app.js');
+import createExpressApp from './app.js';
 
 const port = 3000;
 const nextJsApp = next({

@@ -43,6 +43,9 @@ console.log(process.env.NODE_ENV)
  
 // }
 
+
+const cachedServerlessExpress = serverlessExpress({ app: expressApp })
+
 export default async function (context, req) {
   return cachedServerlessExpress(context, req)
 }

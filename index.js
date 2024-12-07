@@ -17,6 +17,8 @@ const expressApp = createExpressApp(nextJsRequestHandler);
 
 expressApp.disable('x-powered-by');
 
+console.log(JSON.stringify(process.env))
+
 const inFunction = !!process.env.AZURE_FUNCTION_NAME;
 
 // This specifies which mime types should be sent as binary (base64) instead of utf-8-encoded.

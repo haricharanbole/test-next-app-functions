@@ -20,32 +20,26 @@ expressApp.disable('x-powered-by');
 console.log(process.env.NODE_ENV)
 
 
-// if (process.env.NODE_ENV === 'development') {
-//   nextJsApp.prepare().then(
-//     () => {
-//       expressApp.listen(port, (/** @type {any} */ err) => {
-//         if (err) {
-//           throw err;
-//         }
+const serverlessServer = serverlessExpress({
+  app: expressApp,
+});
 
-//         console.log(`> Ready on port ${port}`);
-//       });
-//     },
-//     (error) => {
-//       console.error('An error occurred, unable to start the server');
-//       console.error(error);
-//     },
-//   );
-// } else {
-
-//   const cachedServerlessExpress = serverlessExpress({ app: expressApp })
-
- 
-// }
-
-
-const cachedServerlessExpress = serverlessExpress({ app: expressApp })
-
-export default async function (context, req) {
-  return cachedServerlessExpress(context, req)
+function lambdaHandler(event, context) {
+  return nextJsApp.prepare().then(() => serverlessServer(event, context));
 }
+
+function exitProcessOnError(handler) {
+  return async (...args) => {
+    try {
+      return await handler(...args);
+    } catch (error) {
+      console.error('An error occurred, unable to handle the request');
+      console.error(error);
+
+      // Exit the process, forcing a lambda instance restart
+      process.exit(1);
+    }
+  };
+}
+
+exports.handler = exitProcessOnError(lambdaHandler);

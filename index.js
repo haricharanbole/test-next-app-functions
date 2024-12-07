@@ -17,7 +17,7 @@ const expressApp = createExpressApp(nextJsRequestHandler);
 
 expressApp.disable('x-powered-by');
 
-console.log(JSON.stringify(process.env))
+console.log(process.env.AZURE_FUNCTION_NAME)
 
 const inFunction = !!process.env.AZURE_FUNCTION_NAME;
 

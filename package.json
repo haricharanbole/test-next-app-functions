@@ -12,7 +12,7 @@
     "check": "next lint && tsc --noEmit",
     "preview": "next build && next start",
     "typecheck": "tsc --noEmit",
-    "start:function": "node index.js"
+    "start:function": "node index.cjs"
   },
   "dependencies": {
     "@codegenie/serverless-express": "^4.16.0",

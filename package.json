@@ -2,6 +2,7 @@
   "name": "test-next-app-functions",
   "version": "0.1.0",
   "type": "module",
+  "main": "index.js",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -12,7 +13,7 @@
     "check": "next lint && tsc --noEmit",
     "preview": "next build && next start",
     "typecheck": "tsc --noEmit",
-    "start:function": "node index.cjs"
+    "start:function": "node index.js"
   },
   "dependencies": {
     "@codegenie/serverless-express": "^4.16.0",

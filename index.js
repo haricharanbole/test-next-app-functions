@@ -40,7 +40,8 @@ if (process.env.NODE_ENV === 'development') {
 
   const cachedServerlessExpress = serverlessExpress({ app: expressApp })
 
-  module.exports = async function (/** @type {any} */ context, /** @type {any} */ req) {
+  function finalExpress(/** @type {any} */ context, /** @type {any} */ req) {
     return cachedServerlessExpress(context, req)
   }
+  finalExpress()
 }
